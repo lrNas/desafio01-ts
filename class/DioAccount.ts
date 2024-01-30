@@ -14,30 +14,31 @@ export abstract class DioAccount {
   }
 
   deposit = (value: number): void => {
+    console.log('Voce está depositando ', value)
     this.setBalance(this.balance + value)
-    console.log('Voce depositou ', value)
   }
 
   withdraw = (value: number): void => {
     if (this.balance >= value) {
+      console.log('Voce está sacando ', value)
       this.setBalance(this.balance - value)
-      console.log('Voce sacou ', value)
     } else {
       throw new Error('Saldo insuficiente')
     }
   }
 
   getBalance = (response: boolean=false): any => {
-    console.log(this.balance)
     if (response) {
       return this.balance
+    }else{
+      console.log('Saldo atual ',this.balance)
     }
   }
 
   protected setBalance = (value: number): void => {
     if (this.validateStatus()) {
       this.balance = value
-      console.log("Saldo atualizado: ", this.balance)
+      console.log("Saldo atualizado ", this.balance)
     }
   }
 
